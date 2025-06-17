@@ -8,7 +8,7 @@ public class EtudiantTest {
     
     @Before
     public void setUp() {
-        // Initialize with test values before each test
+     
         instance = new Etudiant("Test Student", 4, 5);
     }
     
@@ -39,7 +39,7 @@ public class EtudiantTest {
     @Test
     public void testCalculerMoyenne() {
         System.out.println("calculerMoyenne");
-        // (4 + 5) / 2 = 4.5
+        
         double expResult = 4.5;
         double result = instance.calculerMoyenne();
         assertEquals(expResult, result, 0.0);

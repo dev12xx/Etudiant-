@@ -1,25 +1,33 @@
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import static org.mockito.Mockito.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.*;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
 
 public class EtudeServeTest {
-    
-    public EtudeServeTest() {
-    }
-    
-   
+
     @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        EtudeServe instance = new EtudeServe();
-        instance.doPost(request, response);
+    public void testDoPostWith4And5() throws Exception {
+        
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+
        
-        fail("The test case is a prototype.");
+        when(request.getParameter("nom")).thenReturn("Test");
+        when(request.getParameter("n1")).thenReturn("4");
+        when(request.getParameter("n2")).thenReturn("5");
+        when(request.getRequestDispatcher("result.jsp")).thenReturn(dispatcher);
+        
+      
+        new EtudeServe().doPost(request, response);
+        
+        
+        verify(request).setAttribute("nom", "Test");
+        verify(request).setAttribute("n1", 4);
+        verify(request).setAttribute("n2", 5);
+        verify(request).setAttribute("moy", 4.5); 
+        
+       
+        verify(dispatcher).forward(request, response);
     }
-    
 }
