@@ -1,7 +1,7 @@
 public class Etudiant {
-    private String nom;
-    private double nombre1; 
-    private double nombre2;
+    private final String nom;
+    private final double nombre1; 
+    private final double nombre2;
     
     public Etudiant(String nom, double nombre1, double nombre2) {
         this.nom = nom;
